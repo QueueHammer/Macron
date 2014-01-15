@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test for Macron</title>
+  <script type="text/javascript" src="underscore-min.js"></script>
+  <script type="text/javascript" src="macron.js"></script>
+</head>
+<body>
+  <script type="text/javascript">
+    var dnol = [{
+      pOne: {
+        pOne: '1.1.1',
+        pTwo: '1.1.2',
+        pThree: '1.1.3'
+      },
+      pTwo: {
+        pOne: '1.2.1',
+        pTwo: '1.2.2',
+        pThree: '1.2.3'
+      }, 
+      pThree: {
+        pOne: '1.3.1',
+        pTwo: '1.3.2',
+        pThree: '1.3.3'
+      }
+    },
+    {
+      pOne: {
+        pOne: '2.1.1',
+        pTwo: '2.1.2',
+        pThree: '2.1.3'
+      },
+      pTwo: {
+        pOne: '2.2.1',
+        pTwo: '2.2.2',
+        pThree: '2.2.3'
+      }, 
+      pThree: {
+        pOne: '2.3.1',
+        pTwo: '2.3.2',
+        pThree: '2.3.3'
+      }
+    },
+    {
+      pOne: {
+        pOne: '3.1.1',
+        pTwo: '3.1.2',
+        pThree: '3.1.3'
+      },
+      pTwo: {
+        pOne: '3.2.1',
+        pTwo: '3.2.2',
+        pThree: '3.2.3'
+      }, 
+      pThree: {
+        pOne: '3.3.1',
+        pTwo: '3.3.2',
+        pThree: '3.3.3'
+      }
+    }];
+    
+    var dnoo = {
+    pOne: {
+      pOne: {
+        pOne: '1.1.1',
+        pTwo: '1.1.2',
+        pThree: '1.1.3'
+      },
+      pTwo: {
+        pOne: '1.2.1',
+        pTwo: '1.2.2',
+        pThree: '1.2.3'
+      }, 
+      pThree: {
+        pOne: '1.3.1',
+        pTwo: '1.3.2',
+        pThree: '1.3.3'
+      }
+    },
+    pTwo: {
+      pOne: {
+        pOne: '2.1.1',
+        pTwo: '2.1.2',
+        pThree: '2.1.3'
+      },
+      pTwo: {
+        pOne: '2.2.1',
+        pTwo: '2.2.2',
+        pThree: '2.2.3'
+      }, 
+      pThree: {
+        pOne: '2.3.1',
+        pTwo: '2.3.2',
+        pThree: '2.3.3'
+      }
+    },
+    pThree: {
+      pOne: {
+        pOne: '3.1.1',
+        pTwo: '3.1.2',
+        pThree: '3.1.3'
+      },
+      pTwo: {
+        pOne: '3.2.1',
+        pTwo: '3.2.2',
+        pThree: '3.2.3'
+      }, 
+      pThree: {
+        pOne: '3.3.1',
+        pTwo: '3.3.2',
+        pThree: '3.3.3'
+      }
+    }};
+    
+    var sortMe = [
+    {one: {two: {three: 10}}},
+    {one: {two: {three: 5}}},
+    {one: {two: {three: 7}}},
+    {one: {two: {three: 1}}},
+    {one: {two: {three: 2}}},
+    {one: {two: {three: 6}}}
+    ];
+    
+    console.log('deep inspection test');
+    console.log(_.pluck(dnol, 'pOne'));
+    console.log(_.pluck(dnoo, 'pOne.pTwo'));
+    console.log(_.pluck(dnol, 'pOne'));
+    console.log(_.pluck(dnoo, 'pOne.pTwo'));
+    
+    console.log('deep sort test');
+    console.log(_.pluck(sortMe, 'one.two.three'));
+    console.log(_.chain(sortMe).sortBy('one.two.three').pluck('one.two.three').value());
+  </script>
+</body>
+</html>
