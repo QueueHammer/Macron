@@ -18,3 +18,20 @@ A second note is that when the orignal signature is detected the orignal undersc
 ---
 
 # Extended Functions
+##pluck
+`_.pluck(list, prop)`, `_(list).pluck(prop)`
+
+The string for 'prop' can now describe nested properties e.g. 'pOne.pTwo.pThree'
+
+    > _.pluck([{a:{b:1}},{a:{b:2}},{a:{b:3}}], 'a.b');  
+    > [1, 2, 3]
+
+##sortBy
+`_.sortBy(list, first, second, nth)`, `_(list).sortBy(first, second, nth)`
+
+
+sortBy now can use multiple functions for sorting. Additionally the function can be replaced with a string that describes a nested property. Event more additionally, they can be mixed in the parameters (you dont have one use only one).
+
+    > _.sortBy([{a:{a:2, b:2}}, {a:{a:2, b:1}}, {a:{a:1, b:1}}], 'a.a', 'a.b')
+    > [{a:{a:1, b:1}}, {a:{a:2, b:1}}, {a:{a:2, b:2}}]
+    
