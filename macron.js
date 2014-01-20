@@ -29,7 +29,7 @@ may change to underscore.nested
     };
   };
   
-  var nestedExtentionFunctions = {
+  var ext = {
     //## pluck
     pluck: function (list, propChain) {
       var f = ferrit(propChain);
@@ -52,6 +52,12 @@ may change to underscore.nested
         var n = f(v);
         return n < m ? n : m;
       }, Infinity);
+    },
+    //## sum
+    sum: function (list, prop) {
+      var f = function (i) { return i; };
+      if (prop !== undefined) f = ferrit(prop);
+      return _.reduce(list, function (m, i) { return m + f(i); }, 0);
     },
     //## sortBy
     sortBy: function (list) {
@@ -80,14 +86,36 @@ may change to underscore.nested
         }, 0);
       }); 
     },
-    //groupBy: function () {
-    //},
-    //indexBy: function () {
-    //},
-    //countBy: function () {
-    //}
+    groupBy: function (list, gpBy) {
+      var f = gpBy;
+      if (!_.isFunction(f)) f = ferrit(gpBy);
+      return _.reduce(list, function (m, i) {
+        var key = f(i);
+        if (m[key] === undefined) m[key] = [];
+        m[key].push(i);
+        return m;
+      }, {});
+    },
+    indexBy: function (list, gpBy) {
+      var f = gpBy;
+      if (!_.isFunction(f)) f = ferrit(gpBy);
+      return _.reduce(list, function (m, i) {
+        m[f(i)] = i;
+        return m;
+      }, {});
+    },
+    countBy: function (list, gpBy) {
+      var f = gpBy;
+      if (!_.isFunction(f)) f = ferrit(gpBy);
+      return _.reduce(list, function (m, i) {
+        var key = f(i);
+        if (m[key] === undefined) m[key] = 0;
+        ++m[key];
+        return m;
+      }, {});
+    },
   };
   
-  root._.mixin(nestedExtentionFunctions);
+  root._.mixin(ext);
   
 }).call(this);
